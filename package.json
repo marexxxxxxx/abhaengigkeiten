@@ -1,0 +1,27 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Ziel dieses Projekts ist eine Web-App, die per ZIP-Upload oder Repo-URL alle Abhängigkeiten eines Projekts erkennt, transitiv auflöst und als interaktiven Graphen visualisiert – inklusive Versionskonflikten, Sicherheitslücken und Lizenzkonflikten.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marexxxxxxx/abhaengigkeiten.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/marexxxxxxx/abhaengigkeiten/issues"
+  },
+  "homepage": "https://github.com/marexxxxxxx/abhaengigkeiten#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
