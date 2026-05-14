@@ -90,8 +90,9 @@ const MANIFEST_MAP = {
 - [x] **Phase 1: MVP – Nur direkte Abhängigkeiten visualisieren**
   - **Ziel:** Upload/URL, Manifest-Scan, Parsen, einfacher Graph (keine transitive Auflösung, keine Konflikterkennung). Damit validieren wir UI und Konzept.
   - **Status:** *Implementiert (Express-Backend, React-Frontend, Cytoscape-Graph)*
-- [ ] **Phase 2: Transitive Auflösung & Versionskonflikte**
+- [-] **Phase 2: Transitive Auflösung & Versionskonflikte**
   - Registry-Abfragen, rekursive Dependency-Auflösung (BFS), Konflikt-Highlighting, Umgang mit großen Graphen.
+  - Erkennen, wenn Pakete unterschiedliche Versionen eines Unter-Pakets benötigen (Sub-Dependency-Konflikt).
 - [ ] **Phase 3: Sicherheitslücken & Lizenzkonflikte**
   - Abfrage der OSV.dev-API für Vulnerabilities, Lizenz-Check.
 - [ ] **Phase 4: Optimierungen (optional)**

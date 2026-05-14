@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --loader ts-node/esm src/index.ts",
-    "dev": "nodemon --loader ts-node/esm src/index.ts"
+    "dev": "nodemon --exec tsx src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -14,10 +14,13 @@
   "type": "module",
   "dependencies": {
     "adm-zip": "^0.5.17",
+    "axios": "^1.16.1",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "fast-glob": "^3.3.3",
-    "multer": "^2.1.1"
+    "lru-cache": "^11.3.6",
+    "multer": "^2.1.1",
+    "semver": "^7.8.0"
   },
   "devDependencies": {
     "@types/adm-zip": "^0.5.8",
@@ -25,8 +28,11 @@
     "@types/express": "^5.0.6",
     "@types/multer": "^2.1.0",
     "@types/node": "^25.7.0",
+    "@types/semver": "^7.7.1",
+    "esbuild": "^0.28.0",
     "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.1",
     "typescript": "^6.0.3"
   }
 }
