@@ -83,35 +83,39 @@ app.post('/api/analyze', upload.single('project'), async (req, res) => {
       }
     }
 
-    // 4. Graph bauen (für Cytoscape)
-    const nodes: any[] = [{ data: { id: 'root', label: 'Project Root' } }];
+    // Lese maxDepth Parameter
+    const maxDepth = parseInt(req.body.maxDepth) || 2;
+
+    // 4. Graph bauen (für Cytoscape) mit Resolver
+    const resolver = await import('./resolver.js');
+    const { nodes: resolvedNodes, edges: resolvedEdges } = await resolver.buildGraph(directDeps, maxDepth);
+
+    const nodes: any[] = [{ data: { id: 'root', label: 'Project Root', type: 'root' } }];
     const edges: any[] = [];
-    const seenNodes = new Set<string>();
 
-    for (const dep of directDeps) {
-      const nodeId = `${dep.type}:${dep.name}`;
-
-      if (!seenNodes.has(nodeId)) {
+    for (const node of resolvedNodes) {
         nodes.push({
           data: {
-            id: nodeId,
-            label: dep.name,
-            version: dep.version,
-            type: dep.type,
-            source: dep.sourceFile
+            id: node.id,
+            label: node.name,
+            version: node.version,
+            type: node.type,
+            source: node.sourceFile,
+            conflict: node.conflict,
+            requestedVersions: node.requestedVersions
           }
         });
-        seenNodes.add(nodeId);
-      }
+    }
 
-      edges.push({
-        data: {
-          id: `edge_root_${nodeId}_${Math.random().toString(36).substring(7)}`,
-          source: 'root',
-          target: nodeId,
-          label: dep.sourceFile
-        }
-      });
+    for (const edge of resolvedEdges) {
+        edges.push({
+          data: {
+            id: edge.id,
+            source: edge.source,
+            target: edge.target,
+            label: edge.label
+          }
+        });
     }
 
     res.json({ nodes, edges });
