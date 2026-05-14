@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import CytoscapeComponent from 'react-cytoscapejs';
 import cytoscape from 'cytoscape';
+import CytoscapeComponent from './CytoscapeComponent';
 
 // Definieren von Typen für Cytoscape
 interface ElementData {
